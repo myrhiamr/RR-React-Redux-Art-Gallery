@@ -7,16 +7,27 @@ function App(props) {
   const dispatch = useDispatch()
   const data = useSelector((state) => state.data)
 
+
   const renderImg = () => {
-    if(data.apiData) {
-      return <img style={{'width': '100vw'}} src={data.apiData.primaryImage} alt={data.apiData.title} />
+    if (data.apiData) {
+      return (
+        <img
+          style={{ height: "100vh" }}
+          src={data.apiData.primaryImage}
+          alt={data.apiData.title}
+        />
+      );
     } else {
-      return <p>image here</p>
+      return <p>image here</p>;
     }
-  }
+  };
+
+
+
 
   useEffect(() => {
     dispatch(fetchData())
+    // props.objectID
   }, [props.objectId, dispatch])
 
 
@@ -40,6 +51,10 @@ function App(props) {
 }
 
 
-const mapStateToProps = (state, ownProps) => ({ objectId: state.data.objectId })
+
+const mapStateToProps = (state, ownProps) => ({
+  objectId: state.data.objectId,
+});
+
 
 export default connect(mapStateToProps)(App);
